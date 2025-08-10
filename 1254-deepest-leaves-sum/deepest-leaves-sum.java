@@ -18,12 +18,12 @@ class Solution {
         if(root==null){
             return 0;
         }
-        List<Integer> ll=new ArrayList<>();
+        int sum=0;
         Queue<TreeNode> q=new LinkedList<>();
         q.add(root);
         while(!q.isEmpty()){
             int size=q.size();
-            int sum=0;
+            sum=0;
             for(int i=0;i<size;i++){
                 TreeNode rv=q.poll();
                 sum+=rv.val;
@@ -34,9 +34,8 @@ class Solution {
                 q.add(rv.right);
             }
             }
-            ll.add(sum);
         }
-        return ll.get(ll.size()-1);
+        return sum;
 
     }
 }
