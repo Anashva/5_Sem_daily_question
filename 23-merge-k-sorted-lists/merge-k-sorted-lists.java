@@ -28,7 +28,13 @@ class Solution {
         return merge(lists);
     }
     public ListNode merge(ListNode[] list){
-        PriorityQueue<ListNode> pq=new PriorityQueue<>((a,b)->a.val-b.val);
+        // PriorityQueue<ListNode> pq=new PriorityQueue<>((a,b)->a.val-b.val);
+        PriorityQueue<ListNode> pq=new PriorityQueue<>(new Comparator <>(){
+            @Override
+            public int compare(ListNode o1,ListNode o2){
+                return o1.val-o2.val;
+            }
+        });
         ListNode Dummy=new ListNode();
         ListNode temp=Dummy;
         for(int i=0;i<list.length;i++){
