@@ -14,17 +14,55 @@
  * }
  */
 class Solution {
-    int i=0;
+
     public TreeNode bstFromPreorder(int[] preorder) {
-        return  bst(preorder,Integer.MAX_VALUE);
+
+        return create(preorder, 0, preorder.length - 1);
+
     }
-    public TreeNode bst(int[] preorder,int range){
-        if(i>=preorder.length || preorder[i]>range){
+
+    public TreeNode create(int[] arr, int si, int ei) {
+
+        if(si > ei) {
+
             return null;
+
         }
-        TreeNode root=new TreeNode(preorder[i++]);
-        root.left=bst(preorder,root.val);
-        root.right=bst(preorder,range);
-        return root;
+
+        if(si == ei) {
+
+            return new TreeNode(arr[si]);
+
+        }
+
+        TreeNode node = new TreeNode(arr[si]);
+
+        int idx = -1;
+
+        for(int i = si+1; i <= ei; i++) {
+
+            if(arr[si] < arr[i]) {
+
+                idx = i - 1;
+
+                break;
+
+            }
+
+        }
+
+        if(idx == -1) {
+
+            idx = ei;
+
+        }
+
+        node.left = create(arr, si + 1, idx);
+
+        node.right = create(arr, idx + 1, ei);
+
+        return node;
+
     }
+
 }
