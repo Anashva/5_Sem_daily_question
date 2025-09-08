@@ -57,7 +57,7 @@ class Solution {
         int[][] dp=new int[n+1][target+1];
         dp[0][0]=1;
         for(int i=1;i<dp.length;i++){
-            for(int j=target;j>0;j--){
+            for(int j=1;j<dp[0].length;j++){
                 int ans=0;
                 for(int m=1;m<=k;m++){
                     if(j-m>=0){
