@@ -1,12 +1,12 @@
 class Solution {
     public int firstMissingPositive(int[] nums) {
-       HashMap<Integer,Integer> mp=new HashMap<>();
-       for(int i=0;i<nums.length;i++){
-        mp.put(nums[i],mp.getOrDefault(nums[i],0)+1);
-       }
+      HashSet<Integer> mp=new HashSet<>();
+      for(int i:nums){
+        mp.add(i);
+      }
        int c=1;
-       for(int k:mp.keySet()){
-        if(mp.containsKey(c)){
+       for(int k:mp){
+        if(mp.contains(c)){
             c++;
         }
         else{
