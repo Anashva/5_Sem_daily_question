@@ -4,12 +4,29 @@ class Solution {
         int h=nums.length-1;
         while(l<=h){
             int mid=l+(h-l)/2;
-            if(nums[mid]==target || nums[l]==target || nums[h]==target){
+            if(nums[mid]==target){
                 return true;
             }
-            else {
+            else if(nums[mid]==nums[l] && nums[mid]==nums[h]){
                 l++;
                 h--;
+            }
+            
+            else if(nums[mid]>=nums[l]){
+                if(nums[l]<=target && target<=nums[mid]){
+                    h=mid;
+                }
+                else{
+                    l=mid+1;
+                }
+            }
+            else if(nums[mid]<=nums[h]){
+                if(nums[mid]<=target && target<=nums[h]){
+                    l=mid+1;
+                }
+                else{
+                    h=mid;
+                }
             }
         }
         // int left=0;
@@ -45,6 +62,7 @@ class Solution {
         //         }
         //     }
         // }
+
         return false;
     }
 }
