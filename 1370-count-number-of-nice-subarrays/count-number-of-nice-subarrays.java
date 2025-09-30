@@ -3,8 +3,8 @@ class Solution {
         return nice(nums,k)-nice(nums,k-1);
     }
     public int nice(int[] nums,int k){
+        int end=0;
         int start=0;
-        int end=0; 
         int ans=0;
         int odd=0;
         while(end<nums.length){
