@@ -1,9 +1,10 @@
 class Solution {
     public long mostPoints(int[][] questions) {
         // return point(questions,0);
-        long [] dp=new long[questions.length];
-        Arrays.fill(dp,-1);
-        return TD(questions,0,dp);
+        // long [] dp=new long[questions.length];
+        // Arrays.fill(dp,-1);
+        // return TD(questions,0,dp);
+        return BU(questions);
     }
     public long point(int[][] arr,int i){
         if(i>=arr.length){
@@ -29,4 +30,13 @@ class Solution {
         skip=TD(arr,idx+1,dp);
         return dp[idx]=Math.max(solve,skip);
     }
+    public long BU(int[][] arr){
+        long[] dp=new long[arr.length+1];
+        for(int i=arr.length-1;i>=0;i--){
+            int idx=Math.min(i+arr[i][1]+1,arr.length);
+            dp[i]=Math.max(dp[i+1],arr[i][0]+dp[idx]);
+        }
+        return dp[0];
+    }
+
 }
