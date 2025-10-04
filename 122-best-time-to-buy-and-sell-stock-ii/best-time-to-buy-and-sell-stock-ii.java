@@ -1,11 +1,12 @@
 class Solution {
     public int maxProfit(int[] nums) {
         // return profit(nums,1,0);
-        int[][] dp=new int[nums.length][2];
-        for(int[]a:dp){
-            Arrays.fill(a,-1);
-        }
-        return TD(nums,1,0,dp);
+        // int[][] dp=new int[nums.length][2];
+        // for(int[]a:dp){
+        //     Arrays.fill(a,-1);
+        // }
+        // return TD(nums,1,0,dp);
+        return BU(nums);
     }
 
     public int profit(int[] arr,int buy,int idx){
@@ -38,6 +39,20 @@ class Solution {
             sell=Math.max(arr[idx]+TD(arr,1,idx+1,dp),TD(arr,0,idx+1,dp));
         }
         return dp[idx][buy]=Math.max(sell,spend);
+    }
+    public int BU(int[] arr){
+        int[][] dp=new int[arr.length+1][2];
+        for(int i=arr.length-1;i>=0;i--){
+            for(int j=0;j<2;j++){
+                if(j==1){
+                    dp[i][j]=Math.max(-arr[i]+dp[i+1][0],dp[i+1][1]);
+                }
+                else{
+                    dp[i][j]=Math.max(arr[i]+dp[i+1][1],dp[i+1][0]);
+                }
+            }
+        }
+        return dp[0][1];
     }
 
 }
