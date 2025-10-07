@@ -14,7 +14,7 @@ class Solution {
             }
             else{
                 int idx=bs(dp,0,len,arr[i]);
-                dp[idx]=arr[i];
+                dp[idx]=arr[i];//agr hamra arr[i] ek chhoti sequence bana rhi jo future me badi sequence banane me madad kregi to usko replace kr denge
             }
         }
         return len;
