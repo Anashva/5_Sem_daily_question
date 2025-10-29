@@ -21,7 +21,7 @@ class Solution {
         }
         int[] ans=new int[queries.length];
         for(int i=0;i<queries.length;i++){
-            int si=right[queries[i][0]];
+            int si=right[queries[i][0]];//we use right array because it will give after or at l of start while  in left it will previus  bar before l
             int ei=left[queries[i][1]];
             if(si<ei){
                 ans[i]=pre[ei]-pre[si];
