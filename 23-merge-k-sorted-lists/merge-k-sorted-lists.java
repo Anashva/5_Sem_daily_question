@@ -25,7 +25,9 @@ class Solution {
         //     head=head.next;
         // }
         // return dummy.next;
-        return merge(lists);
+
+        
+        return sort(lists);
     }
     public ListNode merge(ListNode[] list){
         // PriorityQueue<ListNode> pq=new PriorityQueue<>((a,b)->a.val-b.val);
@@ -51,5 +53,41 @@ class Solution {
             }
         }
         return temp.next;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public ListNode sort(ListNode[] list){
+        PriorityQueue<ListNode> pq=new PriorityQueue<>((a,b)->(a.val-b.val));
+        for(int i=0;i<list.length;i++){
+        if(list[i]!=null){
+            pq.add(list[i]);
+        }
+       }
+       ListNode dummy=new ListNode();
+       ListNode temp=dummy;
+       while(!pq.isEmpty()){
+        ListNode r=pq.poll();
+        dummy.next=r;
+        dummy=dummy.next;
+        if(r.next!=null){
+            pq.add(r.next);
+        }
+       }
+       dummy.next=null;
+       return temp.next;
     }
 }
