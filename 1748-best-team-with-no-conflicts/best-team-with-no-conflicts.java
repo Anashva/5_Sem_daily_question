@@ -28,7 +28,7 @@ class Solution {
                 return dp[j+1][idx];
             }
             int pick=0;
-            if(j==-1 || arr[j][1]<=arr[idx][1]){
+            if(j==-1 || arr[j][1]<=arr[idx][1]){//maximizing our score by checking that agr prev curr wala chhota rha apne prev se to skip kr denge beacuse of conflict
                 pick=arr[idx][1]+max(arr,idx+1,dp,idx);
             }
             int npick=max(arr,idx+1,dp,j);
