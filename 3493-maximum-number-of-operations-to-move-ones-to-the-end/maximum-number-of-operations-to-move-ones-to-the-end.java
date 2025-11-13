@@ -8,7 +8,7 @@ class Solution {
                 i++;
             }
             else{
-                while(i<s.length() && s.charAt(i)=='0'){
+                while(i<s.length() && s.charAt(i)=='0'){//aage tb tk jaenge jb tk one block nhi krega jaha 1 aa gya vha se block ho jaega 
                     i++;
                 }
                 ans+=one;
