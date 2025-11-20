@@ -9,8 +9,8 @@ class Solution {
                 if(grid[i][j]==1){
                     rmin=Math.min(rmin,i);
                     cmin=Math.min(cmin,j);
-                    rmax=Math.max(rmax,i);
                     cmax=Math.max(cmax,j);
+                    rmax=Math.max(rmax,i);
                 }
             }
         }
