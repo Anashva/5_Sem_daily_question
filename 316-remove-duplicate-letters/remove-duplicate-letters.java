@@ -3,14 +3,14 @@ class Solution {
         Stack<Character> st=new Stack<>();
         int[] index=new int[26];
         for(int i=0;i<s.length();i++){
-            index[s.charAt(i)-'a']=i;
+            index[s.charAt(i)-'a']=i;//last index of that character
         }
         boolean[] visit=new boolean[26];
         for(int i=0;i<s.length();i++){
             while(!st.isEmpty() && st.peek()>s.charAt(i) && i<index[st.peek()-'a'] && !visit[s.charAt(i)-'a']){
                 visit[st.pop()-'a']=false;
             }
-            if(!visit[s.charAt(i)-'a']){
+            if(!visit[s.charAt(i)-'a']){//seen first time
                 st.push(s.charAt(i));
                 visit[s.charAt(i)-'a']=true;
             }
