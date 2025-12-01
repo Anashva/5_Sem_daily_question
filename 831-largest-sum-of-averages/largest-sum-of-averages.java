@@ -1,31 +1,35 @@
 class Solution {
     public double largestSumOfAverages(int[] nums, int k) {
-        return largestSumOfAveragesHelper(nums,k,0,new Double[nums.length][k+1]);
+        int[] prefix=new int[nums.length];
+        prefix[0]=nums[0];
+        for(int i=1;i<nums.length;i++){
+            prefix[i]=prefix[i-1]+nums[i];
+        }
+        double[][] dp=new double[nums.length][k+1];
+        for(double[] a:dp){
+            Arrays.fill(a,-1.0);
+        }
+        return average(nums,0,k,prefix,dp);
+
     }
-    
-    private double largestSumOfAveragesHelper(int[] nums, int k, int index, Double[][] memo) {
-        if(index == nums.length)
+    public double average(int[] nums,int idx,int k,int[] prefix,double[][]dp){
+        if(idx>=nums.length){
             return 0;
-        if(memo[index][k] != null)
-            return memo[index][k];
-        
-        int sum=0;
-        if(k == 1) { 
-            for(int i=index; i<nums.length; i++) {
-                sum += nums[i];
-            }
-            return memo[index][k] = sum*1.0/(nums.length-index);
         }
-        
-        int count=0;
-        double max=0;
-        double currAvg=0;
-        for(int i=index; i<nums.length; i++) {
-            sum += nums[i];
-            count++;
-            currAvg=sum*1.0/count;
-            max=Math.max(max,currAvg+largestSumOfAveragesHelper(nums,k-1,i+1,memo));
+        if(k==0){
+            return 0;
         }
-        return memo[index][k] = max;
+        if(k==1){
+            double sum = prefix[nums.length - 1] - (idx == 0 ? 0 : prefix[idx - 1]);
+            return dp[idx][k] = sum / (nums.length - idx);
+        }
+        if(dp[idx][k]!=-1.0){
+            return dp[idx][k];
+        }
+        for(int i=idx;i<=nums.length-k;i++){
+            int sum=prefix[i]-(idx ==0 ? 0:prefix[idx-1]);
+            dp[idx][k]=Math.max(dp[idx][k],((double)(sum)/(i-idx+1))+average(nums,i+1,k-1,prefix,dp));
+        }
+        return dp[idx][k];
     }
 }
