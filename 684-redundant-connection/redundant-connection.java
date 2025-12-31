@@ -4,41 +4,36 @@ class Solution {
         for(int i=1;i<=edges.length;i++){
             mp.put(i,new ArrayList<>());
         }
-        for(int e[]:edges){
+        for(int[] e:edges){
             int v1=e[0];
             int v2=e[1];
-            if(bfs(v1,v2,mp)){
+            if(bft(v1,v2,mp)){
                 return e;
             }
             mp.get(v1).add(v2);
             mp.get(v2).add(v1);
         }
-        return new int [0];
+        return new int[0];
     }
-    public boolean bfs(int src,int des,HashMap<Integer,List<Integer>> mp){
+    public boolean bft(int src,int des,HashMap<Integer,List<Integer>> mp){
         if(src==des){
             return true;
         }
-        Queue<Integer> q=new LinkedList<>();
-        q.add(src);
+        Queue<Integer> pq=new LinkedList<>();
         HashSet<Integer> st=new HashSet<>();
-        while(!q.isEmpty()){
-            // remove
-            int rv=q.poll();
-            // ignore
-            if(st.contains(rv)){
+        pq.add(src);
+        while(!pq.isEmpty()){
+            int r=pq.poll();
+            if(st.contains(r)){
                 continue;
             }
-            // mark visited
-            st.add(rv);
-            // self work
-            if(rv==des){
+            st.add(r);
+            if(r==des){
                 return true;
             }
-            // add nbrs
-            for(int nbrs:mp.get(rv)){
+            for(int nbrs:mp.get(r)){
                 if(!st.contains(nbrs)){
-                    q.add(nbrs);
+                    pq.add(nbrs);
                 }
             }
         }
