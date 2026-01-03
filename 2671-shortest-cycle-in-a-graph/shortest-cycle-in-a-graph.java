@@ -21,12 +21,12 @@ class Solution {
             while(!q.isEmpty()){
                 int r=q.poll();
                 for(int nbr:mp.get(r)){
-                    if(dis[nbr]==-1){
+                    if(dis[nbr]==-1){//agr pehli bar koi node visit ho rha h  
                         parent[nbr]=r;
                         dis[nbr]=dis[r]+1;
                         q.add(nbr);
                     }
-                    else if(parent[r]!=nbr){
+                    else if(parent[r]!=nbr){ // node agr already visit ho chuka h but uska parent nhi h
                         ans=Math.min(ans,dis[nbr]+dis[r]+1);
                     }
                 }
