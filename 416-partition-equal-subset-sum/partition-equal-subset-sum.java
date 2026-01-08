@@ -1,16 +1,16 @@
 class Solution {
     public boolean canPartition(int[] nums) {
-        int total=0;
+        int sum=0;
         for(int i:nums){
-            total+=i;
+            sum+=i;
         }
-        if(total%2!=0){
+        if(sum%2!=0){
             return false;
         }
-        Boolean[][] dp=new Boolean[total/2+1][nums.length];
-        return part(nums,total/2,0,dp);
+        Boolean[][] dp=new Boolean[sum/2+1][nums.length];
+        return partition(nums,0,dp,sum/2);
     }
-    public boolean part(int[] nums,int sum,int idx,Boolean[][]dp){
+    public boolean partition(int[] nums,int idx,Boolean[][] dp,int sum){
         if(sum==0){
             return true;
         }
@@ -20,8 +20,8 @@ class Solution {
         if(dp[sum][idx]!=null){
             return dp[sum][idx];
         }
-        boolean s1=part(nums,sum-nums[idx],idx+1,dp);
-        boolean s2=part(nums,sum,idx+1,dp);
-        return dp[sum][idx] = s1 || s2;
+        boolean s1=partition(nums,idx+1,dp,sum-nums[idx]);
+        boolean s2=partition(nums,idx+1,dp,sum);
+        return dp[sum][idx]=s1 || s2;
     }
 }
