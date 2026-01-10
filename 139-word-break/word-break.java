@@ -1,18 +1,15 @@
 class Solution {
-    public boolean wordBreak(String s, List<String> wordDict) {
+    public boolean wordBreak(String s, List<String> st) {
         boolean[] dp=new boolean[s.length()+1];
-        dp[0]=true;//base case when string is empty
+        dp[0]=true;
         for(int i=1;i<=s.length();i++){
-            for(String t:wordDict){
-                int len=t.length();
-                if(i>=len && dp[i-len]){
-                    if(s.substring(i-len,i).equals(t)){
-                        dp[i]=true;
-                        break;
-                    }
+            for(int j=0;j<i;j++){
+                if(dp[j] && st.contains(s.substring(j,i))){
+                    dp[i]=true;
+                    break;
                 }
             }
         }
-        return dp[dp.length-1];
+        return dp[s.length()];
     }
 }
