@@ -3,36 +3,35 @@ class Solution {
         StringBuilder sb=new StringBuilder();
         int i=0;
         int j=0;
-        while(i<word1.length() && j<word2.length()){
+        int n=word1.length();
+        int m=word2.length();
+        while(i<n && j<m){
             if(word1.charAt(i)>word2.charAt(j)){
                 sb.append(word1.charAt(i));
                 i++;
             }
-            else if(word1.charAt(i)<word2.charAt(j)){
+            else if(word2.charAt(j)>word1.charAt(i)){
                 sb.append(word2.charAt(j));
                 j++;
             }
-            else {
-                if (word1.substring(i).compareTo(word2.substring(j)) > 0) {
+            else{
+                if(word1.substring(i).compareTo(word2.substring(j))>=0){
                     sb.append(word1.charAt(i));
                     i++;
-                } else {
+                }
+                else{
                     sb.append(word2.charAt(j));
                     j++;
                 }
             }
         }
-        if(j==word2.length()){
-            while(i<word1.length()){
-                sb.append(word1.charAt(i));
-                i++;
-            }
+        while(i<n){
+            sb.append(word1.charAt(i));
+            i++;
         }
-        if(i==word1.length()){
-            while(j<word2.length()){
-                sb.append(word2.charAt(j));
-                j++;
-            }
+         while(j<m){
+            sb.append(word2.charAt(j));
+            j++;
         }
         return sb.toString();
     }
