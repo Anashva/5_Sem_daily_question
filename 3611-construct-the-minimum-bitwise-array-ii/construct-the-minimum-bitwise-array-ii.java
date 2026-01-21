@@ -19,3 +19,7 @@ class Solution {
         return ans;
     }
 }
+// exmple like x=00001111
+// x+1=00010000
+// then x | x+1= 11111  here highest setbit remain unchange while all others are changed
+// so we count only 1 upto trailing bits,keeping highest set bit of traling remain same while other are removed
