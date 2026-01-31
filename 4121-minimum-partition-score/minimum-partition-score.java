@@ -75,7 +75,7 @@ class Solution {
     public long query(Deque<Line> hull, long x) {
         while (hull.size() >= 2) {
             Line first = hull.peekFirst();
-            Line second = hull.stream().skip(1).findFirst().get();
+            Line second = hull.toArray(new Line[0])[1];
             if (second.xLeft <= x) {
                 hull.pollFirst();
             }
