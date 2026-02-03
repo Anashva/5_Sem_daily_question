@@ -41,7 +41,6 @@ class Solution {
                 ans=(ans+count(s,idx+1,newt,lz,last,b))%mod;
             }
             else{
-                int newlz=(lz==1 && digit==0) ? 1:0;
                 if(digit>=last){
                     ans=(ans+count(s,idx+1,newt,(lz==1 && digit==0) ? 1 :0,digit,b))%mod;
                 }
@@ -66,28 +65,6 @@ class Solution {
         }
         return sb.toString();
     }
-    // public String tobase(String s){
-    //     if(s.equals("0")){
-    //         return "0";
-    //     }
-    //     StringBuilder sb=new StringBuilder(s);
-    //     int i=sb.length()-1;
-    //     while(i>=0){
-    //         char ch=sb.charAt(i);
-    //         if(ch>'0'){
-    //             sb.setCharAt(i,(char)(ch-1));
-    //             break;
-    //         }
-    //         else{
-    //             sb.setCharAt(i,'9');
-    //             i--;
-    //         }
-    //     }
-    //     while(sb.length()>1 && sb.charAt(0)=='0'){
-    //         sb.deleteCharAt(0);
-    //     }
-    //     return sb.toString();
-    // }
     public String Tobase(String s,int b){
         java.math.BigInteger num=new java.math.BigInteger(s);
         return num.toString(b);
