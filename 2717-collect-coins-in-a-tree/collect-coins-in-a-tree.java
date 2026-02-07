@@ -43,9 +43,6 @@ class Solution {
         for(int ele:q){
             ind[ele]--;
             for(int nbr:mp[ele]){
-                if(nbr==ele){
-                    continue;
-                }
                 ind[nbr]--;
                 if(ind[nbr]==1){
                     ans--;
