@@ -13,12 +13,12 @@ class Solution {
                 Arrays.fill(b,-1);
             }
         }
-        return count(s,0,1,1)-1;
+        return count(s,0,1,1);
 
     }
     public int count(String s,int idx,int tight,int lz){
         if(idx==s.length()){
-            return 1;
+            return lz==1 ? 0 :1;
         }
         if(dp[idx][tight][lz]!=-1){
             return dp[idx][tight][lz];
