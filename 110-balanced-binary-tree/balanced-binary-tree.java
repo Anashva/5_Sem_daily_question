@@ -14,24 +14,22 @@
  * }
  */
 class Solution {
-    class Balancepair{
-        boolean isbal=true;
+    class pair{
+        boolean isbalance=true;
         int ht=-1;
-
     }
     public boolean isBalanced(TreeNode root) {
-        return balance(root).isbal;
+        return balance(root).isbalance;
     }
-    public Balancepair balance(TreeNode root){
+    public pair balance(TreeNode root){
         if(root==null){
-            return new Balancepair();
+            return new pair();
         }
-        Balancepair lbp=balance(root.left);
-        Balancepair rbp=balance(root.right);
-        Balancepair sbp=new Balancepair();
-        sbp.ht=Math.max(lbp.ht,rbp.ht)+1;
-        boolean sb=Math.abs(lbp.ht-rbp.ht)<=1;
-        sbp.isbal=lbp.isbal && rbp.isbal && sb;
-        return sbp;
+        pair left=balance(root.left);
+        pair right=balance(root.right);
+        pair plr=new pair();
+        plr.ht=1+Math.max(left.ht,right.ht);
+        plr.isbalance=left.isbalance && right.isbalance && Math.abs(left.ht-right.ht)<=1;
+        return plr;
     }
 }
