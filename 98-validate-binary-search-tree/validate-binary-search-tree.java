@@ -14,25 +14,24 @@
  * }
  */
 class Solution {
-    class bstpair{
-        boolean isbst=true;
-        Long max=Long.MIN_VALUE;
-        Long min=Long.MAX_VALUE;
+    class pair{
+        boolean bsp=true;
+        long min=Long.MAX_VALUE;
+        long max=Long.MIN_VALUE;
     }
     public boolean isValidBST(TreeNode root) {
-        return ValidBST(root).isbst;
+        return validate(root).bsp;
     }
-    public bstpair ValidBST(TreeNode root){
+    public pair validate(TreeNode root){
         if(root==null){
-            return new bstpair();
+            return new pair();
         }
-        bstpair lbp=ValidBST(root.left);
-        bstpair rbp=ValidBST(root.right);
-        bstpair sbp=new bstpair();
-        sbp.min=Math.min(lbp.min,Math.min(rbp.min,root.val));
-        sbp.max=Math.max(lbp.max,Math.max(rbp.max,root.val));
-        sbp.isbst=lbp.isbst && rbp.isbst && lbp.max<root.val && rbp.min>root.val;
-        return sbp;
+        pair l=validate(root.left);
+        pair r=validate(root.right);
+        pair lr=new pair();
+        lr.min=Math.min(l.min,Math.min(root.val,r.min));
+        lr.max=Math.max(l.max,Math.max(root.val,r.max));
+        lr.bsp=l.bsp && r.bsp && l.max<root.val && r.min>root.val;
+        return lr;
     }
-    
 }
