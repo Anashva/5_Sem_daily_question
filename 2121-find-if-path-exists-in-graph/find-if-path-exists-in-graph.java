@@ -38,5 +38,4 @@ class Solution {
         }
         return false;
     }
-
 }
