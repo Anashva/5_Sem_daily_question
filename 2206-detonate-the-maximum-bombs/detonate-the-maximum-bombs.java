@@ -1,8 +1,5 @@
-import java.util.*;
-
 class Solution {
     List<Integer>[] ll;
-
     public int maximumDetonation(int[][] bombs) {
         int ans = 0;
         int n = bombs.length;
