@@ -14,7 +14,6 @@ class Solution {
         }
         Arrays.sort(rm,(a,b)->b.size-a.size);
         int i=0;
-        int min=Integer.MAX_VALUE;
         TreeSet<Integer> st=new TreeSet<>();
         for(Query qs:qr){
             while(i<rooms.length && rm[i].size>=qs.msize){
