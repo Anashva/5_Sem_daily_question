@@ -30,9 +30,6 @@ class Solution {
         while(!q.isEmpty()){
             int r=q.poll();
             c++;
-            // for(int i=0;i<26;i++){
-            //     ans=Math.max(ans,dp[r][i]);
-            // }
             for(int nbr:mp.get(r)){
                 for(int i=0;i<26;i++){
                     int ch=s.charAt(nbr)-'a';
