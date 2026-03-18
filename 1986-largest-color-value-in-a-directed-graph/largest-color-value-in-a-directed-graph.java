@@ -38,6 +38,7 @@ class Solution {
                         d=1;
                     }
                     dp[nbr][i]=Math.max(dp[r][i]+d,dp[nbr][i]);
+                    
                 }
                 indegree[nbr]--;
                 if(indegree[nbr]==0){
