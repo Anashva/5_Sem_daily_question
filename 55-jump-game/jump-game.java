@@ -1,17 +1,24 @@
 class Solution {
     public boolean canJump(int[] nums) {
-        int c=1;
-        int j=nums.length-1;
-        while(j>0){
-            if(c>nums[j-1]){
-                c++;
+        Boolean[] dp = new Boolean[nums.length];
+        return jump(0, nums, dp);
+    }
 
-            }
-            else{
-                c=1;
-            }
-            j--;
+    public boolean jump(int idx, int[] arr, Boolean[] dp) {
+        if (idx >= arr.length - 1) {
+            return true;
         }
-        return c==1;
+
+        if (dp[idx] != null){
+             return dp[idx];
+        }
+        int mn = arr[idx];
+        for (int i = 1; i <= mn; i++) {
+            if (idx + i < arr.length && jump(idx + i, arr, dp)) {
+                return dp[idx] = true;
+            }
+        }
+
+        return dp[idx] = false;
     }
 }
