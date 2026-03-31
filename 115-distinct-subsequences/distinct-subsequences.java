@@ -1,27 +1,24 @@
 class Solution {
+    Integer[][] dp;
     public int numDistinct(String s, String t) {
-        int[][] dp=new int[s.length()][t.length()];
-        for(int[] a:dp){
-            Arrays.fill(a,-1);
-        }
-        return DS(s,t,0,0,dp);
+        dp=new Integer[s.length()][t.length()];
+        return coin(s,t,0,0);
     }
-    public static int DS(String s,String t,int i,int j,int[][]dp){
+    public int coin(String s,String t,int i,int j){
         if(j==t.length()){
             return 1;
         }
         if(i==s.length()){
             return 0;
         }
-        if(dp[i][j]!=-1){
+        if(dp[i][j]!=null){
             return dp[i][j];
         }
         int inc=0;
-        int exc=0;
         if(s.charAt(i)==t.charAt(j)){
-            inc=DS(s,t,i+1,j+1,dp);
+            inc=coin(s,t,i+1,j+1);
         }
-        exc=DS(s,t,i+1,j,dp);
+        int exc=coin(s,t,i+1,j);
         return dp[i][j]=inc+exc;
     }
 }
