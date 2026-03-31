@@ -1,33 +1,31 @@
 class Solution {
+    Integer[][] dp;
     public int minCut(String s) {
-        int[][] dp=new int[s.length()][s.length()];
-        for(int[] a:dp){
-            Arrays.fill(a,-1);
-        }
-        return mcm(s,0,s.length()-1,dp);
+        dp=new Integer[s.length()][s.length()];
+        return cut(s,0,s.length()-1);
     }
-    public int mcm(String s,int i,int j,int[][]dp){
+    public int cut(String s,int i,int j){
         if(i==j){
             return 0;
         }
-        if(pallindrome(s,i,j)){
+        if(pall(s,i,j)){
             dp[i][j]=0;
             return 0;
         }
-        if(dp[i][j]!=-1){
+        if(dp[i][j]!=null){
             return dp[i][j];
         }
         int ans=Integer.MAX_VALUE;
         int c=0;
         for(int k=i;k<j;k++){
-            if(pallindrome(s,i,k)){
-                c=1+mcm(s,k+1,j,dp);
+            if(pall(s,i,k)){
+                c=1+cut(s,k+1,j);
                 ans=Math.min(ans,c);
             }
         }
         return dp[i][j]=ans;
     }
-    public boolean pallindrome(String s,int i,int j){
+    public boolean pall(String s,int i,int j){
         while(i<j){
             if(s.charAt(i)!=s.charAt(j)){
                 return false;
