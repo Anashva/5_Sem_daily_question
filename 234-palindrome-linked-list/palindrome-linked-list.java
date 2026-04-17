@@ -12,26 +12,32 @@ class Solution {
     public boolean isPalindrome(ListNode head) {
         ListNode slow=head;
         ListNode fast=head;
-        while(fast!=null && fast.next!=null){//finding middle node
-            fast=fast.next.next;
+        while(fast!=null && fast.next!=null){
             slow=slow.next;
+            fast=fast.next.next;
         }
-        ListNode prev=null;
-        while(slow!=null){//reverse from middle second half
-            ListNode temp=slow.next;
-            slow.next=prev;
-            prev=slow;
-            slow=temp;
-        }
-        ListNode first=head;
-        ListNode second=prev;
-        while(second!=null){
-            if(first.val!=second.val){
+        ListNode sec=reverse(slow);
+        ListNode frst=head;
+        while(sec!=null){
+            if(frst.val!=sec.val){
                 return false;
             }
-            first=first.next;
-            second=second.next;
+            frst=frst.next;
+            sec=sec.next;
         }
         return true;
     }
+    public ListNode reverse(ListNode head){
+        ListNode prev=null;
+        while(head!=null){
+            ListNode next=head.next;
+            head.next=prev;
+            prev=head;
+            head=next;
+        }
+        return prev;
+    }
 }
+
+// approach
+// find the middle and reverse the second part and check with first part
