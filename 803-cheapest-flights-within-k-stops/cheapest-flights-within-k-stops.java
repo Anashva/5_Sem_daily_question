@@ -15,23 +15,14 @@ class Solution {
     }
     public int path(int dst,int k,int src){
         PriorityQueue<Pair> pq=new PriorityQueue<>((a,b)->a.cost-b.cost);
-        pq.add(new Pair(src,0,k+1));
-        // HashSet<Integer> st=new HashSet<>();
-        int[] best = new int[mp.size()];
+        pq.add(new Pair(src,0,k));//k+1 for edges
+        int[] best = new int[mp.size()];//prevents from exploring worse states of the same vertex
         Arrays.fill(best, -1);
 
         while(!pq.isEmpty()){
             // remove
             Pair rp=pq.poll();
 
-            // ignore
-            // if(st.contains(rp.vtx)){
-            //     continue;
-            // }
-            // // mark visited
-            // st.add(rp.vtx);
-
-            // self work
             if(rp.vtx==dst){
                 return rp.cost;
             }
@@ -42,12 +33,11 @@ class Solution {
             best[rp.vtx] = rp.mk;
 
             // add nbrs
-            if(rp.mk>0){
+            if(rp.mk>=0){
                 for(int nbrs:mp.get(rp.vtx).keySet()){
-                    // if(!st.contains(nbrs)){
-                        int cost=mp.get(rp.vtx).get(nbrs);
-                        pq.add(new Pair(nbrs,rp.cost+cost,rp.mk-1));
-                    // }
+                    int cost=mp.get(rp.vtx).get(nbrs);
+                    pq.add(new Pair(nbrs,rp.cost+cost,rp.mk-1));
+                    
                 }
             }
         }
