@@ -1,17 +1,17 @@
 class Solution {
 public:
-    bool canFinish(int numCourses, vector<vector<int>>& pre) {
-        vector<int> in(numCourses,0);
-        unordered_map<int,vector<int>> mp;
-        for(int i=0;i<pre.size();i++){
-            int a=pre[i][0];
-            int b=pre[i][1];
-            mp[a].push_back(b);
-            in[b]++;
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        vector<vector<int>> ll(numCourses);
+        vector<int> deg(numCourses);
+        for(auto &e:prerequisites){
+            int a=e[0];
+            int b=e[1];
+            ll[a].push_back(b);
+            deg[b]++;
         }
         queue<int> q;
         for(int i=0;i<numCourses;i++){
-            if(in[i]==0){
+            if(deg[i]==0){
                 q.push(i);
             }
         }
@@ -20,9 +20,9 @@ public:
             int r=q.front();
             q.pop();
             c++;
-            for(int nbr:mp[r]){
-                in[nbr]--;
-                if(in[nbr]==0){
+            for(int nbr:ll[r]){
+                deg[nbr]--;
+                if(deg[nbr]==0){
                     q.push(nbr);
                 }
             }
