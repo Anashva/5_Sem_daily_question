@@ -26,12 +26,15 @@ public:
             if(time>dis[vtx][rempower]){
                 continue;
             }
+
+            if(rempower<cost[vtx]){
+                continue;
+            }
+
             for(auto &e:ll[vtx]){
                 int nbr=e.first;
                 int etime=e.second;
-                if(rempower<cost[vtx]){
-                    continue;
-                }
+
                 int npower=rempower-cost[vtx];
                 long long ntime=time+etime;
                 if(ntime<dis[nbr][npower]){
