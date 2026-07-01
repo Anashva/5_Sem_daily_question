@@ -2,7 +2,7 @@ class Solution {
 public:
     int maximumSafenessFactor(vector<vector<int>>& grid) {
         int n = grid.size();
-        if (grid[n - 1][n - 1] == 1) {
+        if (grid[0][0]==1 || grid[n - 1][n - 1] == 1) {
             return 0;
         }
         vector<vector<int>> dis(n, vector<int>(n, INT_MAX));
