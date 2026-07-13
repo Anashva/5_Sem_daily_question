@@ -2,8 +2,6 @@ class Solution {
 public:
     vector<int> ll;
     vector<int> sequentialDigits(int low, int high) {
-        // low--;
-        string l=to_string(low);
         string r=to_string(high);
         string ans = "";
         count(r,0,1,1,-1,ans);
@@ -13,7 +11,6 @@ public:
                 res.push_back(x);
             }
         }
-
         sort(res.begin(), res.end());
         return res;
     }
