@@ -7,16 +7,13 @@ public:
         int end=0;
         int start=0;
         int ans=0;
-        unordered_map<int,int> mp;
+        vector<int> freq(3,0);
         int n=s.length();
         while(end<n){
-            mp[s[end]]++;
-            while(mp.size()==3){
+            freq[s[end]-'a']++;
+            while(freq[0]>0 && freq[1]>0 && freq[2]>0){
                 ans+=n-end;
-                mp[s[start]]--;
-                if(mp[s[start]]==0){
-                    mp.erase(s[start]);
-                }
+                freq[s[start]-'a']--;
                  start++;
             }
             end++;
