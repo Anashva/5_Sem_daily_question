@@ -8,6 +8,9 @@ public:
         sort(freq.begin(),freq.end(),greater<int>());
         int total=0;
         for(int i=0;i<26;i++){
+            if(freq[i]==0){
+                break;
+            }
             total+=(i/8+1)*freq[i];
         }
         return total;
