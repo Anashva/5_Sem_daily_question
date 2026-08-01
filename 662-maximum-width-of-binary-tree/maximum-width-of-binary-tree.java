@@ -14,33 +14,33 @@
  * }
  */
 class Solution {
-    class Pair{
-        TreeNode Node;
-        int idx;
-        public Pair(TreeNode Node ,int idx){
-            this.idx=idx;
-            this.Node=Node;
-        }
-    }
     public int widthOfBinaryTree(TreeNode root) {
         Queue<Pair> q=new LinkedList<>();
-        int width=0;
         q.add(new Pair(root,0));
+        int ans=0;
         while(!q.isEmpty()){
             Pair start=q.peek();
             Pair end=null;
             int s=q.size();
             for(int i=0;i<s;i++){
                 end=q.poll();
-                if(end.Node.left!=null){
-                    q.add(new Pair(end.Node.left,2*end.idx+1));
+                if(end.node.left!=null){
+                    q.add(new Pair(end.node.left,2*end.idx+1));
                 }
-                if(end.Node.right!=null){
-                    q.add(new Pair(end.Node.right,2*end.idx+2));
+                if(end.node.right!=null){
+                    q.add(new Pair(end.node.right,2*end.idx+2));
                 }
             }
-            width=Math.max(width,end.idx-start.idx+1);
+            ans=Math.max(ans,end.idx-start.idx+1);
         }
-        return width;
+        return ans;
+    }
+    class Pair{
+        TreeNode node;
+        int idx;
+        Pair(TreeNode node,int idx){
+            this.node=node;
+            this.idx=idx;
+        }
     }
 }
