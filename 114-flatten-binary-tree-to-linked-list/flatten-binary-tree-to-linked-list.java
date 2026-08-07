@@ -15,15 +15,29 @@
  */
 class Solution {
     List<TreeNode> ll=new ArrayList<>();
+    TreeNode prev=null;
     public void flatten(TreeNode root) {
-        node(root);
-        for(int i=1;i<ll.size();i++){
-            TreeNode prev=ll.get(i-1);
-            TreeNode curr=ll.get(i);
-            prev.left=null;
-            prev.right=curr;
-        }
+        // node(root);
+        // for(int i=1;i<ll.size();i++){
+        //     TreeNode prev=ll.get(i-1);
+        //     TreeNode curr=ll.get(i);
+        //     prev.left=null;
+        //     prev.right=curr;
+        // }
         // make(root);
+
+        solve(root);
+    }
+    public void solve(TreeNode r){
+        if(r==null){
+            return;
+        }
+        solve(r.right);
+        solve(r.left);
+        r.left=null;
+        r.right=prev;
+
+        prev=r;
     }
     public void node(TreeNode r){
         if(r==null){
