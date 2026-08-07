@@ -14,8 +14,24 @@
  * }
  */
 class Solution {
+    List<TreeNode> ll=new ArrayList<>();
     public void flatten(TreeNode root) {
-        make(root);
+        node(root);
+        for(int i=1;i<ll.size();i++){
+            TreeNode prev=ll.get(i-1);
+            TreeNode curr=ll.get(i);
+            prev.left=null;
+            prev.right=curr;
+        }
+        // make(root);
+    }
+    public void node(TreeNode r){
+        if(r==null){
+            return;
+        }
+        ll.add(r);
+        node(r.left);
+        node(r.right);
     }
     public TreeNode make(TreeNode root){
         if(root==null){
