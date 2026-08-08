@@ -14,32 +14,30 @@
  * }
  */
 class Solution {
-    class pair{
+    class Pair{
         boolean bst=true;
-        Integer min=Integer.MAX_VALUE;
-        Integer max=Integer.MIN_VALUE;
+        long min=Long.MAX_VALUE;
+        long max=Long.MIN_VALUE;
         int sum=0;
         int ans=0;
     }
     public int maxSumBST(TreeNode root) {
-        return Sum(root).ans;
+        return solve(root).ans;
     }
-    public pair Sum(TreeNode root){
+    public Pair solve(TreeNode root){
         if(root==null){
-            return new pair();
+            return new Pair();
         }
-        pair l=Sum(root.left);
-        pair r=Sum(root.right);
-        pair lr=new pair();
+        Pair l=solve(root.left);
+        Pair r=solve(root.right);
+        Pair lr=new Pair();
         lr.min=Math.min(l.min,Math.min(root.val,r.min));
         lr.max=Math.max(l.max,Math.max(root.val,r.max));
         lr.sum=l.sum+r.sum+root.val;
+        lr.ans=Math.max(r.ans,l.ans);
         lr.bst=l.bst && r.bst && l.max<root.val && r.min>root.val;
         if(lr.bst){
-            lr.ans=Math.max(l.ans,Math.max(r.ans,lr.sum));
-        }
-        else{
-            lr.ans=Math.max(l.ans,r.ans);
+            lr.ans=Math.max(lr.ans,lr.sum);
         }
         return lr;
     }
